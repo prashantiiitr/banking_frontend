@@ -1,46 +1,59 @@
 
 import DashboardLayout from '../layouts/DashboardLayout';
 
+import DashboardCards from '../components/DashboardCards';
+
+import BalanceChart from '../components/BalanceChart';
+
+import RecentTransactions from '../components/RecentTransactions';
+
+import { useDashboardData } from '../hooks/useDashboardData';
+
 function DashboardPage() {
+  const {
+    data,
+    isLoading,
+  } = useDashboardData();
+
+  if (isLoading) {
+    return (
+      <DashboardLayout>
+        <h1>Loading...</h1>
+      </DashboardLayout>
+    );
+  }
+
+  const totalBalance =
+    data?.accounts?.reduce(
+      (
+        acc: number,
+        item: any,
+      ) => acc + item.balance,
+      0,
+    ) || 0;
+
   return (
     <DashboardLayout>
-      <div className="p-10">
-        <h1 className="text-4xl font-bold">
-          Banking Dashboard
-        </h1>
+      <DashboardCards
+        totalBalance={
+          totalBalance
+        }
+        transactionCount={
+          data?.transactions
+            ?.length || 0
+        }
+        loanCount={
+          data?.loans?.length || 0
+        }
+      />
 
-        <div className="grid grid-cols-3 gap-6 mt-10">
-          <div className="bg-white p-6 rounded-xl shadow">
-            <h2 className="text-xl font-semibold">
-              Total Balance
-            </h2>
+      <BalanceChart />
 
-            <p className="text-3xl mt-4">
-              ₹1,20,000
-            </p>
-          </div>
-
-          <div className="bg-white p-6 rounded-xl shadow">
-            <h2 className="text-xl font-semibold">
-              Transactions
-            </h2>
-
-            <p className="text-3xl mt-4">
-              24
-            </p>
-          </div>
-
-          <div className="bg-white p-6 rounded-xl shadow">
-            <h2 className="text-xl font-semibold">
-              Loans
-            </h2>
-
-            <p className="text-3xl mt-4">
-              2
-            </p>
-          </div>
-        </div>
-      </div>
+      <RecentTransactions
+        transactions={
+          data?.transactions || []
+        }
+      />
     </DashboardLayout>
   );
 }

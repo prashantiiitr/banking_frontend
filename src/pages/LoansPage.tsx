@@ -1,100 +1,53 @@
 
-import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
-import { useNavigate } from 'react-router-dom';
-
-import toast from 'react-hot-toast';
+import DashboardLayout from '../layouts/DashboardLayout';
 
 import api from '../api/axios';
 
-import { useAuthStore } from '../store/authStore';
+function LoansPage() {
+  const { data } = useQuery({
+    queryKey: ['loans'],
 
-function LoginPage() {
-  const navigate = useNavigate();
-
-  const setToken =
-    useAuthStore(
-      (state) => state.setToken,
-    );
-
-  const [email, setEmail] =
-    useState('');
-
-  const [password, setPassword] =
-    useState('');
-
-  const handleLogin = async (
-    e: React.FormEvent,
-  ) => {
-    e.preventDefault();
-
-    try {
+    queryFn: async () => {
       const response =
-        await api.post(
-          '/auth/login',
-          {
-            email,
-            password,
-          },
-        );
+        await api.get('/loans');
 
-      setToken(
-        response.data.accessToken,
-      );
-
-      toast.success(
-        'Login successful',
-      );
-
-      navigate('/');
-    } catch (error) {
-      toast.error('Login failed');
-    }
-  };
+      return response.data;
+    },
+  });
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="bg-white p-10 rounded-xl shadow-lg w-[400px]">
-        <h1 className="text-3xl font-bold mb-6 text-center">
-          Login
-        </h1>
+    <DashboardLayout>
+      <h1 className="text-3xl font-bold mb-8">
+        Loans
+      </h1>
 
-        <form
-          className="space-y-4"
-          onSubmit={handleLogin}
-        >
-          <input
-            type="email"
-            placeholder="Email"
-            className="w-full border p-3 rounded-lg"
-            value={email}
-            onChange={(e) =>
-              setEmail(e.target.value)
-            }
-          />
-
-          <input
-            type="password"
-            placeholder="Password"
-            className="w-full border p-3 rounded-lg"
-            value={password}
-            onChange={(e) =>
-              setPassword(
-                e.target.value,
-              )
-            }
-          />
-
-          <button
-            className="w-full bg-black text-white p-3 rounded-lg"
+      <div className="space-y-6">
+        {data?.map((loan: any) => (
+          <div
+            key={loan.id}
+            className="bg-white p-8 rounded-2xl shadow-sm"
           >
-            Login
-          </button>
-        </form>
+            <h2 className="text-2xl font-bold">
+              ₹{loan.amount}
+            </h2>
+
+            <p className="mt-4">
+              EMI:
+              ₹{loan.monthlyEmi}
+            </p>
+
+            <p className="mt-2">
+              Status:
+              {loan.status}
+            </p>
+          </div>
+        ))}
       </div>
-    </div>
+    </DashboardLayout>
   );
 }
 
-export default LoginPage;
+export default LoansPage;
 

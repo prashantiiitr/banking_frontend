@@ -1,4 +1,6 @@
 
+import { Bell } from 'lucide-react';
+
 import { useNavigate } from 'react-router-dom';
 
 import { useAuthStore } from '../store/authStore';
@@ -18,17 +20,27 @@ function Navbar() {
   };
 
   return (
-    <div className="bg-white shadow px-8 py-4 flex justify-between">
-      <h1 className="text-2xl font-bold">
-        Banking System
-      </h1>
+    <div className="bg-white h-[80px] shadow-sm flex items-center justify-between px-8">
+      <div>
+        <h1 className="text-2xl font-bold text-slate-800">
+          Welcome Back 👋
+        </h1>
 
-      <button
-        onClick={handleLogout}
-        className="bg-red-500 text-white px-4 py-2 rounded-lg"
-      >
-        Logout
-      </button>
+        <p className="text-slate-500">
+          Manage your banking activities
+        </p>
+      </div>
+
+      <div className="flex items-center gap-6">
+        <Bell className="cursor-pointer" />
+
+        <button
+          onClick={handleLogout}
+          className="bg-black text-white px-5 py-2 rounded-xl"
+        >
+          Logout
+        </button>
+      </div>
     </div>
   );
 }

@@ -1,11 +1,9 @@
-
+import { Link } from "react-router-dom";
 function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="bg-white p-10 rounded-xl shadow-lg w-[400px]">
-        <h1 className="text-3xl font-bold mb-6 text-center">
-          Login
-        </h1>
+        <h1 className="text-3xl font-bold mb-6 text-center">Login</h1>
 
         <form className="space-y-4">
           <input
@@ -13,18 +11,21 @@ function LoginPage() {
             placeholder="Email"
             className="w-full border p-3 rounded-lg"
           />
-
           <input
             type="password"
             placeholder="Password"
             className="w-full border p-3 rounded-lg"
           />
-
-          <button
-            className="w-full bg-black text-white p-3 rounded-lg"
-          >
+          <button className="w-full bg-black text-white p-3 rounded-lg">
             Login
           </button>
+          <p className="text-center mt-5">
+            Don't have an account?{" "}
+            <Link to="/register" className="text-blue-600">
+              Register
+            </Link>
+          </p>
+      
         </form>
       </div>
     </div>
@@ -32,4 +33,3 @@ function LoginPage() {
 }
 
 export default LoginPage;
-

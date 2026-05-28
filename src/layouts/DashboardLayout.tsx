@@ -11,13 +11,15 @@ function DashboardLayout({
   children,
 }: Props) {
   return (
-    <div className="flex">
+    <div className="flex bg-[#f8fafc]">
       <Sidebar />
 
       <div className="flex-1">
         <Navbar />
 
-        {children}
+        <div className="p-8">
+          {children}
+        </div>
       </div>
     </div>
   );
