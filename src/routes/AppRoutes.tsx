@@ -13,7 +13,7 @@ import LoansPage from "../pages/LoansPage";
 import TransferPage from "../pages/TransferPage";
 import ApplyLoanPage from "../pages/ApplyLoanPage";
 import AdminPage from "../pages/AdminPage";
-
+import BeneficiariesPage from "../pages/BeneficiariesPage";
 function AppRoutes() {
   return (
     <BrowserRouter>
@@ -80,6 +80,14 @@ function AppRoutes() {
           element={
             <ProtectedRoute>
               <AdminPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/beneficiaries"
+          element={
+            <ProtectedRoute>
+              <BeneficiariesPage />
             </ProtectedRoute>
           }
         />

@@ -1,7 +1,21 @@
-
 import DashboardLayout from '../layouts/DashboardLayout';
 
+import { useBeneficiaries } from '../hooks/useBeneficiaries';
+
 function BeneficiariesPage() {
+  const {
+    data,
+    isLoading,
+  } = useBeneficiaries();
+
+  if (isLoading) {
+    return (
+      <DashboardLayout>
+        <h1>Loading...</h1>
+      </DashboardLayout>
+    );
+  }
+
   return (
     <DashboardLayout>
       <div className="bg-white p-8 rounded-2xl shadow-sm">
@@ -16,21 +30,54 @@ function BeneficiariesPage() {
         </div>
 
         <div className="mt-8 space-y-4">
-          <div className="border p-5 rounded-xl flex justify-between">
-            <div>
-              <h2 className="font-semibold">
-                Rahul Sharma
-              </h2>
+          {data?.map(
+            (beneficiary: any) => (
+              <div
+                key={beneficiary.id}
+                className="border rounded-xl p-5"
+              >
+                <div className="flex justify-between">
+                  <div>
+                    <h2 className="font-bold text-lg">
+                      {beneficiary.name}
+                    </h2>
 
-              <p className="text-slate-500">
-                ICICI Bank
-              </p>
-            </div>
+                    <p className="text-slate-500">
+                      {
+                        beneficiary.bankName
+                      }
+                    </p>
 
-            <button className="bg-slate-100 px-4 rounded-lg">
-              Transfer
-            </button>
-          </div>
+                    <p className="text-slate-500">
+                      A/C:
+                      {
+                        beneficiary.accountNumber
+                      }
+                    </p>
+
+                    <p className="text-slate-500">
+                      IFSC:
+                      {
+                        beneficiary.ifscCode
+                      }
+                    </p>
+                  </div>
+
+                  <div>
+                    {beneficiary.isApproved ? (
+                      <span className="bg-green-100 text-green-700 px-4 py-2 rounded-full">
+                        Approved
+                      </span>
+                    ) : (
+                      <span className="bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full">
+                        Pending
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ),
+          )}
         </div>
       </div>
     </DashboardLayout>
@@ -38,4 +85,3 @@ function BeneficiariesPage() {
 }
 
 export default BeneficiariesPage;
-

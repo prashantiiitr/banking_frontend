@@ -1,4 +1,3 @@
-
 import {
   LayoutDashboard,
   Wallet,
@@ -6,16 +5,14 @@ import {
   Landmark,
   ShieldCheck,
   Users,
-} from 'lucide-react';
+} from "lucide-react";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function Sidebar() {
   return (
     <div className="w-[260px] min-h-screen bg-[#0f172a] text-white p-6">
-      <h1 className="text-3xl font-bold mb-12">
-        NeoBank
-      </h1>
+      <h1 className="text-3xl font-bold mb-12">NeoBank</h1>
 
       <div className="space-y-3">
         <Link
@@ -38,7 +35,6 @@ function Sidebar() {
           to="/beneficiaries"
           className="flex items-center gap-3 p-3 rounded-xl hover:bg-[#1e293b]"
         >
-          <Users size={20} />
           Beneficiaries
         </Link>
 
@@ -71,4 +67,3 @@ function Sidebar() {
 }
 
 export default Sidebar;
-
