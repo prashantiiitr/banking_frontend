@@ -14,6 +14,9 @@ import TransferPage from "../pages/TransferPage";
 import ApplyLoanPage from "../pages/ApplyLoanPage";
 import AdminPage from "../pages/AdminPage";
 import BeneficiariesPage from "../pages/BeneficiariesPage";
+import ForgotPasswordPage from "../pages/ForgotPasswordPage";
+import ResetPasswordPage from "../pages/ResetPasswordPage";
+import OtpVerificationPage from "../pages/OtpVerificationPage";
 function AppRoutes() {
   return (
     <BrowserRouter>
@@ -91,6 +94,10 @@ function AppRoutes() {
             </ProtectedRoute>
           }
         />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/verify-otp" element={<OtpVerificationPage />} />
+
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
       </Routes>
     </BrowserRouter>
   );
