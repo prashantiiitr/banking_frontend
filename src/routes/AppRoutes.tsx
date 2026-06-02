@@ -17,6 +17,10 @@ import BeneficiariesPage from "../pages/BeneficiariesPage";
 import ForgotPasswordPage from "../pages/ForgotPasswordPage";
 import ResetPasswordPage from "../pages/ResetPasswordPage";
 import OtpVerificationPage from "../pages/OtpVerificationPage";
+
+import KycPage from "../pages/KycPage";
+import NomineePage from "../pages/NomineePage";
+import ManagerDashboard from "../pages/ManagerDashboard";
 function AppRoutes() {
   return (
     <BrowserRouter>
@@ -98,6 +102,32 @@ function AppRoutes() {
         <Route path="/verify-otp" element={<OtpVerificationPage />} />
 
         <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route
+          path="/kyc"
+          element={
+            <ProtectedRoute>
+              <KycPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/nominee"
+          element={
+            <ProtectedRoute>
+              <NomineePage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/manager"
+          element={
+            <ProtectedRoute>
+              <ManagerDashboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

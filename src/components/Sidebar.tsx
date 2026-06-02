@@ -61,6 +61,13 @@ function Sidebar() {
           <ShieldCheck size={20} />
           Admin
         </Link>
+        <Link to="/kyc">KYC</Link>
+
+        <Link to="/nominee">Nominee</Link>
+
+        <Link to="/manager">Manager</Link>
+
+        <Link to="/kyc-approval">KYC Approval</Link>
       </div>
     </div>
   );
