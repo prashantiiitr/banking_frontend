@@ -21,6 +21,11 @@ import OtpVerificationPage from "../pages/OtpVerificationPage";
 import KycPage from "../pages/KycPage";
 import NomineePage from "../pages/NomineePage";
 import ManagerDashboard from "../pages/ManagerDashboard";
+import AdminDashboard from "../pages/AdminDashboard";
+import FraudDashboard from "../pages/FraudDashboard";
+import LoanApprovalPage from "../pages/LoanApprovalPage";
+import ChequePage from "../pages/ChequePage";
+import AuditLogsPage from "../pages/AuditLogsPage";
 function AppRoutes() {
   return (
     <BrowserRouter>
@@ -125,6 +130,50 @@ function AppRoutes() {
           element={
             <ProtectedRoute>
               <ManagerDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin-dashboard"
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/fraud"
+          element={
+            <ProtectedRoute>
+              <FraudDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/loan-approval"
+          element={
+            <ProtectedRoute>
+              <LoanApprovalPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/cheques"
+          element={
+            <ProtectedRoute>
+              <ChequePage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/audit-logs"
+          element={
+            <ProtectedRoute>
+              <AuditLogsPage />
             </ProtectedRoute>
           }
         />
